@@ -25,4 +25,5 @@ jobs:
       working-directory: ./WebApp1
       run: dotnet build --no-restore
     - name: Test
+      working-directory: ./WebApp1
       run: dotnet test --no-build --verbosity normal
