@@ -33,10 +33,7 @@ jobs:
     - name: Test
       working-directory: ./WebApp1
       run: dotnet test --no-build --verbosity normal
-  app-deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+  
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
