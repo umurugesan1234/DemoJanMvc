@@ -1,5 +1,8 @@
 name: .NET
-
+env:
+  url: https://app-github-demo.azurewebsites.net
+  webapp_name: app-github-demo
+  resource_group: GitHubDemo
 on:
   push:
     branches: [ main ]
@@ -29,19 +32,18 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 deploy:
   runs-on: ubuntu-latest
-     needs: docker_build_and_push
-    steps:
-    - name: Azure authentication
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS  }}
+  needs: build
+  steps:
+  - name: Azure authentication
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS  }}
         
-    - name: Azure CLI Start Staging Slot
-      uses: Azure/cli@1.0.4
-      with:
-       inlineScript: az webapp start --name $webapp_name --resource-group $resource_group --slot staging
-      
-    - name: Azure WebApp
-      uses: Azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.webapp_name }}
+  - name: Azure CLI Start Staging Slot
+    uses: Azure/cli@1.0.4
+    with:
+      inlineScript: az webapp start --name $webapp_name --resource-group $resource_group 
+  - name: Azure WebApp
+    uses: Azure/webapps-deploy@v2
+    with:
+      app-name: ${{ env.webapp_name }}
