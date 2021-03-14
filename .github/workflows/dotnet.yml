@@ -22,6 +22,6 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-      working-directory: /WebApp1/WebApp1.sln
+      working-directory: WebApp1
     - name: Test
       run: dotnet test --no-build --verbosity normal
