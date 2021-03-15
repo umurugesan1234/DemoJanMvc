@@ -22,9 +22,11 @@ jobs:
         dotnet-version: '3.1.x'
 
     - name: Build with dotnet
+      working-directory: ./WebApp1
       run: dotnet build --configuration Release
 
     - name: dotnet publish
+      working-directory: ./WebApp1
       run: dotnet publish -c Release -o myapp
 
     - name: Deploy to Azure Web App
