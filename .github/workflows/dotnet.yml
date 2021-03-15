@@ -28,8 +28,8 @@ jobs:
     - name: Build
       working-directory: ./WebApp1
       run:  |
-        dotnet build --no-restore
-        dotnet publish
+        dotnet build --configuration Release
+        dotnet publish -c Release -o myapp
     - name: Test
       working-directory: ./WebApp1
       run: dotnet test --no-build --verbosity normal
@@ -39,4 +39,4 @@ jobs:
       with:
         app-name: ${{ env.webapp_name }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
-        package: './WebApp1'
+        package: myapp
