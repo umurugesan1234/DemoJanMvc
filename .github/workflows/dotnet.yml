@@ -6,9 +6,9 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
 on:
   push:
-    branches: [ main ]
+    branches: [ main1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ main1 ]
 
 jobs:
   build:
