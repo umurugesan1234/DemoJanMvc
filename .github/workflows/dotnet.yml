@@ -6,9 +6,9 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
 on:
   push:
-    branches: [ main1 ]
+    branches: [ main ]
   pull_request:
-    branches: [ main1 ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -39,4 +39,4 @@ jobs:
       with:
         app-name: ${{ env.webapp_name }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
-        package: myapp
+        package: ./WebApp1/myapp
