@@ -5,10 +5,10 @@ env:
   resource_group: GitHubDemo
   AZURE_WEBAPP_PACKAGE_PATH: '.'
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  #push:
+    #branches: [ main ]
+  #pull_request:
+    #branches: [ main ]
 
 jobs:
   build:
