@@ -11,10 +11,11 @@ on:
 
 jobs:
   build-and-deploy:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    #strategy:
+      #matrix:
+        #os: [ubuntu-latest, macos-latest, windows-latest]
+    #runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
@@ -27,7 +28,15 @@ jobs:
     - name: Build with dotnet
       working-directory: ./WebApp1
       run: dotnet build --configuration Release
-
+      
     - name: dotnet publish
       working-directory: ./WebApp1
       run: dotnet publish -c Release -o myapp
+      
+    #- name: Deploy to Azure Web App
+      #uses: azure/webapps-deploy@v2
+      #with:
+        #app-name: 'app-github-demo'
+        #slot-name: 'production'
+        #publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        #package: ./WebApp1/myapp
